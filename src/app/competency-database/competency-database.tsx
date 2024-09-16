@@ -35,8 +35,8 @@ export default function CompetencyDatabase() {
       </div>
       
       <div className="flex-grow p-6">
-        <Tabs defaultValue="competencies" className="space-y-10">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <Tabs defaultValue="competencies" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-2">
             <TabsTrigger value="competencies">Kompetencije</TabsTrigger>
             <TabsTrigger value="employee-profiles">Profili zaposlenih</TabsTrigger>
             <TabsTrigger value="mapping">Mapiranje</TabsTrigger>
@@ -47,7 +47,7 @@ export default function CompetencyDatabase() {
           </TabsList>
           
           <TabsContent value="competencies">
-            <Card>
+            <Card className="mt-6">
               <CardHeader>
                 <CardTitle>Lista kompetencija</CardTitle>
                 <CardDescription>Pregled i upravljanje kompetencijama u Elektroprivredi</CardDescription>
@@ -55,8 +55,11 @@ export default function CompetencyDatabase() {
               <CardContent>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                   <div className="relative w-full sm:w-64">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-                    <Input placeholder="Pretraži kompetencije" className="pl-8" />
+                    {/* Uklanjamo ikonicu lupe */}
+                    <Input 
+                      placeholder="Pretraži kompetencije" 
+                      className="pl-3" // Smanjujemo levi padding
+                    />
                   </div>
                   <Button>
                     <Plus className="h-4 w-4 mr-2" />

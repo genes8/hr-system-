@@ -40,11 +40,11 @@ export default function OnlineLearning() {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   const courses = [
-    { id: 1, title: "Osnove upravljanja elektroenergetskim sistemima", category: "Tehničke veštine", format: "Video", duration: "2h 30min", progress: 75, instructor: "Dr Ana Jovanović", rating: 4.8 },
-    { id: 2, title: "Napredna analiza podataka u energetici", category: "Analitičke veštine", format: "Interaktivni", duration: "3h 15min", progress: 30, instructor: "Prof. Marko Nikolić", rating: 4.9 },
-    { id: 3, title: "Energetska efikasnost u industriji", category: "Tehničke veštine", format: "Video", duration: "1h 45min", progress: 100, instructor: "Ing. Jovana Petrović", rating: 4.7 },
-    { id: 4, title: "Zaštita na radu u elektroenergetici", category: "Bezbednost", format: "Tekst", duration: "1h", progress: 50, instructor: "Dr Nikola Đorđević", rating: 4.6 },
-    { id: 5, title: "Upravljanje projektima u energetskom sektoru", category: "Upravljanje", format: "Interaktivni", duration: "4h", progress: 0, instructor: "MBA Milica Stojanović", rating: 4.9 },
+    { id: 1, title: "Osnove upravljanja elektroenergetskim sistemima", category: "Tehničke veštine", format: "Video", duration: "2h 30min", progress: 75, instructor: "Ana Jovanović", rating: 4.8 },
+    { id: 2, title: "Napredna analiza podataka u energetici", category: "Analitičke veštine", format: "Interaktivni", duration: "3h 15min", progress: 30, instructor: "Marko Nikolić", rating: 4.9 },
+    { id: 3, title: "Energetska efikasnost u industriji", category: "Tehničke veštine", format: "Video", duration: "1h 45min", progress: 100, instructor: "Jovana Petrović", rating: 4.7 },
+    { id: 4, title: "Zaštita na radu u elektroenergetici", category: "Bezbednost", format: "Tekst", duration: "1h", progress: 50, instructor: "Nikola Đorđević", rating: 4.6 },
+    { id: 5, title: "Upravljanje projektima u energetskom sektoru", category: "Upravljanje", format: "Interaktivni", duration: "4h", progress: 0, instructor: "Milica Stojanović", rating: 4.9 },
   ]
 
   const learningPlan = [
@@ -67,8 +67,8 @@ export default function OnlineLearning() {
   const categories = ['all', ...Array.from(new Set(courses.map(course => course.category)))]
 
   const recommendedCourses = [
-    { id: 6, title: "Obnovljivi izvori energije", category: "Tehničke veštine", format: "Video", duration: "2h", instructor: "Dr Marija Simić", rating: 4.8 },
-    { id: 7, title: "Liderstvo u energetskom sektoru", category: "Upravljanje", format: "Interaktivni", duration: "3h 30min", instructor: "Prof. Petar Petrović", rating: 4.9 },
+    { id: 6, title: "Obnovljivi izvori energije", category: "Tehničke veštine", format: "Video", duration: "2h", instructor: "Marija Simić", rating: 4.8 },
+    { id: 7, title: "Liderstvo u energetskom sektoru", category: "Upravljanje", format: "Interaktivni", duration: "3h 30min", instructor: "Petar Petrović", rating: 4.9 },
   ]
 
   return (
@@ -148,15 +148,15 @@ export default function OnlineLearning() {
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <Badge variant="secondary">Završeno</Badge>
+                        <Badge className="bg-green-500 text-white">Završeno</Badge>
                         <span>Energetska efikasnost u industriji</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <Badge variant="secondary">U toku</Badge>
+                        <Badge className="bg-blue-500 text-white">U toku</Badge>
                         <span>Napredna analiza podataka u energetici</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <Badge variant="secondary">Započeto</Badge>
+                        <Badge className="bg-yellow-500 text-white">Započeto</Badge>
                         <span>Zaštita na radu u elektroenergetici</span>
                       </li>
                     </ul>
@@ -205,10 +205,8 @@ export default function OnlineLearning() {
               <CardContent>
                 <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0 md:space-x-2">
                   <div className="relative w-full md:w-64">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
                     <Input 
                       placeholder="Pretraži kurseve" 
-                      className="pl-8" 
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -247,6 +245,7 @@ export default function OnlineLearning() {
                         </div>
                         <div className="flex items-center space-x-2 mb-2">
                           <Avatar className="h-6 w-6">
+                            <AvatarImage src={`https://i.pravatar.cc/150?u=${course.instructor}`} />
                             <AvatarFallback>{course.instructor.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                           </Avatar>
                           <span>{course.instructor}</span>
@@ -292,7 +291,15 @@ export default function OnlineLearning() {
                         <TableCell className="font-medium">{item.title}</TableCell>
                         <TableCell>{item.deadline}</TableCell>
                         <TableCell>
-                          <Badge variant={item.priority === 'Visok' ? 'destructive' : item.priority === 'Srednji' ? 'default' : 'secondary'}>
+                          <Badge 
+                            className={
+                              item.priority === 'Visok' 
+                                ? 'bg-yellow-500 text-white' 
+                                : item.priority === 'Srednji' 
+                                  ? 'bg-orange-500 text-white' 
+                                  : 'bg-blue-500 text-white'
+                            }
+                          >
                             {item.priority}
                           </Badge>
                         </TableCell>

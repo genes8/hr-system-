@@ -66,6 +66,7 @@ export default function CompetencyHistory() {
     { id: 3, employeeId: 1, competency: "Energetska efikasnost", date: "2023-06-10", type: "Projekat", details: "Implementacija sistema za praćenje energetske efikasnosti", score: 88 },
     { id: 4, employeeId: 1, competency: "Upravljanje elektroenergetskim sistemima", date: "2023-09-05", type: "Ocena", details: "Godišnja procena veština", score: 90 },
     { id: 5, employeeId: 1, competency: "Analiza podataka u energetici", date: "2023-11-30", type: "Projekat", details: "Analiza podataka o potrošnji električne energije", score: 95 },
+    { id: 6, employeeId: 1, competency: "Održavanje elektroenergetske mreže", date: "2024-01-15", type: "Obuka", details: "Osnovni kurs održavanja elektroenergetske mreže", score: 75 },
   ]
 
   const competencyLevels: CompetencyLevel[] = [
@@ -109,9 +110,8 @@ export default function CompetencyHistory() {
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-grow">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
                   <Select onValueChange={(value) => setSelectedEmployee(employees.find(e => e.id === parseInt(value)) || null)}>
-                    <SelectTrigger className="pl-8">
+                    <SelectTrigger className="pl-3">
                       <SelectValue placeholder="Izaberite zaposlenog" />
                     </SelectTrigger>
                     <SelectContent>
@@ -178,7 +178,13 @@ export default function CompetencyHistory() {
                                     <h3 className="font-semibold">{item.competency}</h3>
                                     <p className="text-sm text-gray-500">{item.details}</p>
                                   </div>
-                                  <Badge variant={item.score >= 90 ? "default" : item.score >= 80 ? "secondary" : "destructive"}>
+                                  <Badge 
+                                    className={`${
+                                      item.score >= 80 
+                                        ? "bg-green-500 text-white" 
+                                        : "bg-red-500 text-white"
+                                    } px-2 py-1 rounded`}
+                                  >
                                     {item.score}%
                                   </Badge>
                                 </div>

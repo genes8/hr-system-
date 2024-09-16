@@ -49,8 +49,8 @@ export default function EmployeeProfiles() {
             <CardContent>
               <div className="flex flex-col gap-4 mb-6">
                 <div className="relative">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-                  <Input placeholder="Pretraži zaposlene" className="pl-8" />
+                  {/* Uklanjamo ikonicu lupe */}
+                  <Input placeholder="Pretraži zaposlene" className="pl-3" /> {/* Smanjujemo levi padding */}
                 </div>
                 <Button>
                   <Plus className="h-4 w-4 mr-2" />

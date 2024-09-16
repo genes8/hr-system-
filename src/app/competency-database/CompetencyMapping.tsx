@@ -80,8 +80,8 @@ export default function CompetencyMapping() {
               <CardContent>
                 <div className="flex justify-between items-center mb-6">
                   <div className="relative w-64">
-                    <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-                    <Input placeholder="Pretraži mapiranja" className="pl-8" />
+                    {/* Uklanjamo ikonicu lupe */}
+                    <Input placeholder="Pretraži mapiranja" className="pl-3" /> {/* Smanjujemo levi padding */}
                   </div>
                   <Select>
                     <SelectTrigger className="w-[180px]">

@@ -8,8 +8,13 @@ import dynamic from 'next/dynamic'
 
 const CompetencyDatabase = dynamic(() => import('./competency-database/competency-database'), { ssr: false })
 const OnlineLearning = dynamic(() => import('./online-learning/online-learning'), { ssr: false })
-
-import Link from 'next/link'
+const AIHRAssistant = dynamic(() => import('./aihrassistant/AIHRAssistant'), { ssr: false })
+const OnlineTesting = dynamic(() => import('./online-testing/online-testing'), { ssr: false })
+const BazaZnanja = dynamic(() => import('./baza-znanja/baza-znanja'), { ssr: false })
+const PracenjeSertifikata = dynamic(() => import('./Pracenje-sertifikata/PracenjeSertifikata'), { ssr: false })
+const Anketiranje = dynamic(() => import('./anketiranje/anketiranje'), { ssr: false })
+const Onboarding = dynamic(() => import('./onboarding/onboarding'), { ssr: false })
+const UpravljanjeTalentima = dynamic(() => import('./upravljanje-talentima/upravljanje-talentima'), { ssr: false })
 
 export default function Dashboard() {
   const [isClient, setIsClient] = useState(false)
@@ -25,12 +30,12 @@ export default function Dashboard() {
     { name: 'Baza kompetencija', icon: <Database className="w-6 h-6" />, path: 'competency-database' },
     { name: 'Online učenje', icon: <Book className="w-6 h-6" />, path: 'online-learning' },
     { name: 'Online testiranje', icon: <Clipboard className="w-6 h-6" />, path: 'online-testing' },
-    { name: 'Baza znanja', icon: <FileText className="w-6 h-6" />, path: 'knowledge-base' },
+    { name: 'Baza znanja', icon: <FileText className="w-6 h-6" />, path: 'baza-znanja' }, 
     { name: 'Praćenje sertifikata', icon: <Award className="w-6 h-6" />, path: 'certificate-tracking' },
     { name: 'Anketiranje', icon: <MessageSquare className="w-6 h-6" />, path: 'surveying' },
     { name: 'Onboarding', icon: <Users className="w-6 h-6" />, path: 'onboarding' },
     { name: 'Upravljanje talentima', icon: <Briefcase className="w-6 h-6" />, path: 'talent-management' },
-    { name: 'AI analitika', icon: <BarChart className="w-6 h-6" />, path: 'ai-analytics' },
+    { name: 'AI Asistent', icon: <Zap className="w-6 h-6" />, path: 'ai-assistant' },
   ]
 
   if (!isClient) {
@@ -79,10 +84,10 @@ export default function Dashboard() {
                     >
                       <img
                         className="w-8 h-8 rounded-full border-2 border-white"
-                        src="/placeholder.svg?height=32&width=32"
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/woman%20pic%202-gSN7PvwteaPSJD5vgamH5zywzrkGgx.webp"
                         alt="Avatar korisnika"
                       />
-                      <span className="ml-2 text-sm font-medium">John Doe</span>
+                      <span className="ml-2 text-sm font-medium">Ana Petrović</span>
                       <ChevronDown className="w-4 h-4 ml-1" />
                     </button>
                     {isUserMenuOpen && (
@@ -102,6 +107,13 @@ export default function Dashboard() {
               {activeModule === 'dashboard' && <DashboardHome />}
               {activeModule === 'competency-database' && <CompetencyDatabase />}
               {activeModule === 'online-learning' && <OnlineLearning />}
+              {activeModule === 'online-testing' && <OnlineTesting />}
+              {activeModule === 'ai-assistant' && <AIHRAssistant />}
+              {activeModule === 'baza-znanja' && <BazaZnanja />}
+              {activeModule === 'certificate-tracking' && <PracenjeSertifikata />}
+              {activeModule === 'surveying' && <Anketiranje />}
+              {activeModule === 'onboarding' && <Onboarding />}
+              {activeModule === 'talent-management' && <UpravljanjeTalentima />}
             </div>
           </main>
         </div>

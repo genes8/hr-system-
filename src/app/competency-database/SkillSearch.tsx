@@ -99,10 +99,10 @@ export default function SkillSearch() {
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-grow">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                  {/* Uklanjamo ikonicu lupe */}
                   <Input 
                     placeholder="Pretraži po imenu, poziciji ili veštini" 
-                    className="pl-8" 
+                    className="pl-3" // Smanjujemo levi padding
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -114,7 +114,7 @@ export default function SkillSearch() {
                       Filteri
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-80">
+                  <PopoverContent className="w-80 bg-white"> 
                     <div className="space-y-4">
                       <div>
                         <h4 className="font-medium mb-2">Veštine</h4>
@@ -166,7 +166,7 @@ export default function SkillSearch() {
               {(selectedSkills.length > 0 || selectedDepartments.length > 0) && (
                 <div className="flex flex-wrap gap-2">
                   {selectedSkills.map((skill) => (
-                    <Badge key={skill} variant="secondary" className="flex items-center gap-1">
+                    <Badge key={skill} variant="secondary" className="flex items-center gap-1 bg-green-100 text-green-800">
                       {skill}
                       <X 
                         className="h-3 w-3 cursor-pointer" 
@@ -234,7 +234,9 @@ export default function SkillSearch() {
                         <TableCell>
                           <div className="flex flex-wrap gap-1">
                             {employee.skills.map((skill) => (
-                              <Badge key={skill} variant="secondary">{skill}</Badge>
+                              <Badge key={skill} variant="secondary" className="bg-green-100 text-green-800">
+                                {skill}
+                              </Badge>
                             ))}
                           </div>
                         </TableCell>

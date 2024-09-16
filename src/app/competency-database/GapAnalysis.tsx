@@ -185,7 +185,6 @@ export default function CompetencyDatabase() {
 
   return (
     <div>
-      <h2>Baza kompetencija</h2>
       <div className="flex flex-col min-h-screen">
         <div className="bg-blue-900 text-white p-6">
           <h1 className="text-2xl font-bold">Gap analiza kompetencija</h1>
@@ -201,7 +200,10 @@ export default function CompetencyDatabase() {
               <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-grow">
-                    <Select onValueChange={(value) => setSelectedPosition(positions.find(p => p.id === parseInt(value)))}>
+                    <Select onValueChange={(value) => {
+                      const position = positions.find(p => p.id === parseInt(value));
+                      if (position) setSelectedPosition(position);
+                    }}>
                       <SelectTrigger>
                         <SelectValue placeholder="Izaberite poziciju" />
                       </SelectTrigger>
@@ -215,7 +217,10 @@ export default function CompetencyDatabase() {
                     </Select>
                   </div>
                   <div className="flex-grow">
-                    <Select onValueChange={(value) => setSelectedEmployee(employees.find(e => e.id === parseInt(value)))}>
+                    <Select onValueChange={(value) => {
+                      const employee = employees.find(e => e.id === parseInt(value));
+                      if (employee) setSelectedEmployee(employee);
+                    }}>
                       <SelectTrigger>
                         <SelectValue placeholder="Izaberite zaposlenog" />
                       </SelectTrigger>

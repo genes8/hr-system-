@@ -31,10 +31,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function SkillSearch() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedSkills, setSelectedSkills] = useState([])
-  const [selectedDepartments, setSelectedDepartments] = useState([])
-  const [sortColumn, setSortColumn] = useState('name')
-  const [sortDirection, setSortDirection] = useState('asc')
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([])
+  const [selectedDepartments, setSelectedDepartments] = useState<string[]>([])
+  const [sortColumn, setSortColumn] = useState<'name' | 'position' | 'department'>('name')
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
 
   const skills = [
     "Upravljanje elektroenergetskim sistemima",
@@ -74,7 +74,7 @@ export function SkillSearch() {
     return 0
   })
 
-  const handleSort = (column) => {
+  const handleSort = (column: 'name' | 'position' | 'department') => {
     if (column === sortColumn) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
     } else {
@@ -99,10 +99,10 @@ export function SkillSearch() {
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-grow">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
                   <Input 
                     placeholder="Pretraži po imenu, poziciji ili veštini" 
-                    className="pl-8" 
+                    className="pl-10" 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
